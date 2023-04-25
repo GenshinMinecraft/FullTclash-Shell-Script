@@ -1,0 +1,6 @@
+admin:
+- <ADMIN>
+bot:
+ api_id: <APIID> 
+ api_hash: <APIHASH>
+ bot_token: <TOKEN>
