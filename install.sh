@@ -1,7 +1,8 @@
 #/bin/bash
 
 # 本脚本用于在Debian系列系统安装FullTclash
-# 系统监测脚本源自X-ui项目的install.sh，十分感谢开源工作者付出
+# 系统检测脚本源自X-ui项目的install.sh，十分感谢开源工作者付出
+# https://github.com/AirportR/FullTclash
 # **********************
 # Create Date 2023/4/25
 # By GenshinMinecraft
@@ -16,6 +17,8 @@ cur_dir=$(pwd)
 
 # check root
 [[ $EUID -ne 0 ]] && echo -e "请使用root用户运行此脚本" && exit 1
+
+echo -e "$green如果在安装过程中遇到问题，请在FullTclash官方TG频道反馈！#plain"
 
 # check os
 if [[ -f /etc/redhat-release ]]; then
@@ -92,7 +95,7 @@ ENV_Install() {
     exit 1
     fi
 
-    echo -e "${yellow}环境已安装完成，如有报错请截图或报错寻求帮助${plain}"
+    echo -e "${yellow}环境已安装完成，如有报错请截图寻求帮助${plain}"
 }
 
 GIT_Install() {
@@ -169,6 +172,7 @@ Edit_Systemd() {
 Start() {
     systemctl daemon-reload
     systemctl start FullTclash.service
+    echo -e "$green成功启动FullTclash！$plain"
     
 }
 
