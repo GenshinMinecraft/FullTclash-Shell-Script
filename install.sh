@@ -117,8 +117,8 @@ GIT_Install() {
 Install() {
     cd /usr/local/FullTclash/resources
     echo -e "${yellow}接下来是编辑配置文件，编辑错误可能会导致无法启动，甚至崩溃，请确保您的主机已经安装好环境！$plain"
-    #curl https://ghproxy.com/https://raw.githubusercontent.com/GenshinMinecraft/FullTclash-Shell-Script/main/config.yaml -O /usr/local/FullTclash/resources/config.yml
-    wget https://raw.githubusercontents.com/GenshinMinecraft/FullTclash-Shell-Script/main/config.yaml -O /usr/local/FullTclash/resources/config.yml
+    #curl https://ghproxy.com/https://raw.githubusercontent.com/GenshinMinecraft/FullTclash-Shell-Script/main/config.yaml -O /usr/local/FullTclash/resources/config.yaml
+    wget https://raw.githubusercontents.com/GenshinMinecraft/FullTclash-Shell-Script/main/config.yaml -O /usr/local/FullTclash/resources/config.yaml
     ADMIN=0
     APIID=0
     APIHASH=0
@@ -135,18 +135,18 @@ Install() {
 
     #sed 's/被替换的内容/要替换成的内容/g' file
 
-    sed -i "s/<ADMIN>/${ADMIN}/g" /usr/local/FullTclash/resources/config.yml
-    sed -i "s/<APIID>/${APIID}/g" /usr/local/FullTclash/resources/config.yml
-    sed -i "s/<APIHASH>/${APIHASH}/g" /usr/local/FullTclash/resources/config.yml
-    sed -i "s/<TOKEN>/${TOKEN}/g" /usr/local/FullTclash/resources/config.yml
-    sed -i "s/<PROXY>/${PROXY}/g" /usr/local/FullTclash/resources/config.yml
+    sed -i "s/<ADMIN>/${ADMIN}/g" /usr/local/FullTclash/resources/config.yaml
+    sed -i "s/<APIID>/${APIID}/g" /usr/local/FullTclash/resources/config.yaml
+    sed -i "s/<APIHASH>/${APIHASH}/g" /usr/local/FullTclash/resources/config.yaml
+    sed -i "s/<TOKEN>/${TOKEN}/g" /usr/local/FullTclash/resources/config.yaml
+    sed -i "s/<PROXY>/${PROXY}/g" /usr/local/FullTclash/resources/config.yaml
 
-    cat /usr/local/FullTclash/resources/config.yml
+    cat /usr/local/FullTclash/resources/config.yaml
     echo -e "\n"
     echo -e "${red}"
-    cat /usr/local/FullTclash/resources/config.yml
+    cat /usr/local/FullTclash/resources/config.yaml
     echo -e "${plain} 这是您的配置文件，这是由最简配置文件生成的，如果需要更多自定义功能，请浏览 $yellow https://github.com/AirportR/FullTclash/blob/master/resources/config.yaml.example $plain"
-    echo -e "$plain 配置文件路径：$yellow /usr/local/FullTclash/resources/config.yml $plain"
+    echo -e "$plain 配置文件路径：$yellow /usr/local/FullTclash/resources/config.yaml $plain"
 
     echo -e "$yellow 正在安装PIP包环境，请稍等...$red"
     echo -e "$yellow 注：此处特别容易产生报错，遇到问题请截图询问。$plain"
@@ -161,12 +161,15 @@ Install() {
 }
 
 Edit_Systemd() {
+    rm -rf /etc/systemd/system/multi-user.target.wants/FullTclash.service /etc/systemd/system/FullTclash.service
     wget -O /etc/systemd/system/FullTclash.service 'https://raw.githubusercontents.com/GenshinMinecraft/FullTclash-Shell-Script/main/FullTclash.service'
     echo -e "$yellow已完成Systemd守护进程设置。$plain"
 }
 
 Start() {
+    systemctl daemon-reload
     systemctl start FullTclash.service
+    
 }
 
 ENV_Install
