@@ -1,4 +1,12 @@
 #/bin/bash
+
+# 本脚本用于在Debian系列系统安装FullTclash
+# 系统监测脚本源自X-ui项目的install.sh，十分感谢开源工作者付出
+# **********************
+# Create Date 2023/4/25
+# By GenshinMinecraft
+# **********************
+
 red='\033[0;31m'
 green='\033[0;32m'
 yellow='\033[0;33m'
@@ -64,6 +72,26 @@ ENV_Install() {
     apt update
     apt upgrade -y
     apt install python3 python3-pip python3-dev libffi-dev libssl-dev curl wget git -y
+    
+    if [[ $? -ne 0 ]]; then
+    echo -e "$red !!!在执行apt安装软件包时发生了这是一个错误，请检查您的系统版本是否正确。如不能自行解决，请截图提问。!!!"
+    exit 1
+    fi
+    
+    type python3
+
+    if [[ $? -ne 0 ]]; then
+    echo -e "$red !!!Python环境尚未正确安装好，请检查是否已安装python3.8+如不能自行解决，请截图提问。!!!"
+    exit 1
+    fi
+
+    type pip3
+
+    if [[ $? -ne 0 ]]; then
+    echo -e "$red !!!Python的Pip环境尚未正确安装好，请检查是否已安装python3.8+以及Pip。如不能自行解决，请截图提问。!!!"
+    exit 1
+    fi
+
     echo -e "${yellow}环境已安装完成，如有报错请截图或报错寻求帮助${plain}"
 }
 
@@ -72,6 +100,17 @@ GIT_Install() {
     rm -rf FullTclash
     #git clone https://ghproxy.com/https://github.com/AirportR/FullTclash.git
     git clone https://github.com/AirportR/FullTclash.git
+
+    if [[ $? -ne 0 ]]; then
+    echo -e "$yellow检测到无法连接到GitHub服务器，开始使用反代源进行安装。$plain"
+    git clone https://ghproxy.com/https://github.com/AirportR/FullTclash.git
+    fi
+    
+    if [[ $? -ne 0 ]]; then
+    echo -e "$red !!!在执行'git clone https://github.com/AirportR/FullTclash.git'时发生了这是一个错误，请检查您是否安装了git以及git版本是否正确。如不能自行解决，请截图提问。!!!"
+    exit 1
+    fi
+    
     cd ${cur_dir}
 }
 
@@ -116,14 +155,22 @@ Install() {
     pip3 install -r /usr/local/FullTclash/requirements.txt
 
     if [[ $? -ne 0 ]]; then
-    echo -e "$red 发生了这是一个错误，请检查您的python版本和pip版本是否正确。如不能自行解决，请截图提问。"
+    echo -e "$red !!!在执行'pip3 install -r /usr/local/FullTclash/requirements.txt'时发生了这是一个错误，请检查您的python版本和pip版本是否正确。如不能自行解决，请截图提问。!!!"
     exit 1
     fi
-
 }
 
+Edit_Systemd() {
+    wget -O /etc/systemd/system/FullTclash.service 'https://raw.githubusercontents.com/GenshinMinecraft/FullTclash-Shell-Script/main/FullTclash.service'
+    echo -e "$yellow已完成Systemd守护进程设置。$plain"
+}
+
+Start() {
+    systemctl start FullTclash.service
+}
 
 ENV_Install
 GIT_Install
 Install
-
+Edit_Systemd
+Start
