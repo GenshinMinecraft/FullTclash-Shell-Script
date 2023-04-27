@@ -181,7 +181,7 @@ Start() {
 
     wget -O /usr/bin/FTC "https://raw.githubusercontents.com/GenshinMinecraft/FullTclash-Shell-Script/main/FTC.sh"
     chmod +x /usr/bin/FTC
-    echo -e "$green快捷脚本已安装完毕，输入 $yellowFTC$green 即可快捷管理FullTclash！$plain"
+    echo -e "$green快捷脚本已安装完毕，输入$yellow FTC $green即可快捷管理FullTclash！$plain"
     
 }
 
