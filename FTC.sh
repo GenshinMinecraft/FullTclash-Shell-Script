@@ -26,8 +26,10 @@ echo -e "$red FullTclash 管理脚本$yellow
 4) 卸载FullTclash
 5) 设置开机启动
 6) 设置开机不启动
-7) 编辑配置文件（VIM）$plain
+7) 编辑配置文件（VIM）
 99) 卸载重装FullTclash
+$red 如果上面有“WARNING”标志，说明未安装FullTclash！
+$plain
 "
 
 systemctl status FullTclash | grep -E 'running' >> /dev/null
@@ -124,9 +126,6 @@ case $num in
     *)
         echo -e "$red输入命令有误，请重试！$plain"
         exit 1
-esac"
         ;;
-    *)
-        echo -e "$red输入命令有误，请重试！$plain"
-        exit 1
+
 esac
