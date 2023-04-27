@@ -28,7 +28,8 @@ echo -e "$red FullTclash 管理脚本$yellow
 6) 设置开机不启动
 7) 编辑配置文件（VIM）
 99) 卸载重装FullTclash
-$red 如果上面有“WARNING”标志，说明未安装FullTclash！
+
+如果下有“WARNING”标志，说明未安装FullTclash！
 $plain
 "
 
