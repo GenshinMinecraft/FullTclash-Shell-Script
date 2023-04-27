@@ -27,6 +27,7 @@ echo -e "$red FullTclash 管理脚本$yellow
 5) 设置开机启动
 6) 设置开机不启动
 7) 编辑配置文件（VIM）$plain
+99) 卸载重装FullTclash
 "
 
 systemctl status FullTclash | grep -E 'running' >> /dev/null
@@ -115,6 +116,15 @@ case $num in
         echo -e "$green已更新config.yaml，可正常使用！$plain"
         fi
         exit 0
+        ;;
+    99)
+        wget -O install_FTC.sh "https://raw.githubusercontents.com/GenshinMinecraft/FullTclash-Shell-Script/main/install.sh" && bash install_FTC.sh
+        echo -e "$green 已重装FullTclash，请输入FTC查看管理脚本！$plain"
+        ;;
+    *)
+        echo -e "$red输入命令有误，请重试！$plain"
+        exit 1
+esac"
         ;;
     *)
         echo -e "$red输入命令有误，请重试！$plain"
