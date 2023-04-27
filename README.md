@@ -8,3 +8,5 @@ wget -O install_FTC.sh "https://raw.githubusercontents.com/GenshinMinecraft/Full
 ```bash
 FTC
 ```
+
+如发现bug，可提issue或自行修改后pr。本项目仅提供Debian系列系统使用。
