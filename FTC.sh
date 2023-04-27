@@ -31,9 +31,9 @@ echo -e "$red FullTclash 管理脚本$yellow
 
 systemctl status FullTclash | grep -E 'running' >> /dev/null
 if [[ $? -ne 0 ]]; then
-    echo "当前状态：$red未启动！$plain"
+    echo -e "当前状态：$red未启动！$plain"
 else
-    echo "当前状态：$green已启动！$plain"
+    echo -e "当前状态：$green已启动！$plain"
 fi
 
 read -p "序号选择：" num
@@ -47,36 +47,36 @@ case $num in
     1)
         systemctl daemon-reload
         systemctl start FullTclash
-        echo -e "$green已成功启动FullTclash！"
+        echo -e "$green已成功启动FullTclash！$plain"
         exit 0
         ;;
     2)
         systemctl daemon-reload
         systemctl stop FullTclash
-        echo -e "$green已成功停止FullTclash！"
+        echo -e "$green已成功停止FullTclash！$plain"
         exit 0
         ;;
     3)
         systemctl daemon-reload
         systemctl restart FullTclash
-        echo -e "$green已成功重启FullTclash！"
+        echo -e "$green已成功重启FullTclash！$plain"
         exit 0
         ;;
     4)
         systemctl disable FullTclash
         rm -rf /usr/local/FullTclash/ /etc/systemd/system/multi-user.target.wants/FullTclash.service /etc/systemd/system/FullTclash.service
-        echo -e "$green已成功卸载FullTclash！"
+        echo -e "$green已成功卸载FullTclash！$plain"
         echo -e "如需彻底卸载本脚本，请手动执行 rm -rf /usr/bin/FTC "
         exit 0
         ;;
     5) 
         systemctl enable FullTclash
-        echo -e "$green已成功设置开机启动FullTclash！"
+        echo -e "$green已成功设置开机启动FullTclash！$plain"
         exit 0
         ;;
     6) 
         systemctl disable FullTclash
-        echo -e "$green已成功设置开机不启动FullTclash！"
+        echo -e "$green已成功设置开机不启动FullTclash！$plain"
         exit 0
         ;;
     7) 
@@ -112,9 +112,9 @@ case $num in
         echo -e "$green已切换为旧配置并启动$plain"
         exit 0
         fi
-    
-        
+        echo -e "$green已更新config.yaml，可正常使用！$plain"
         fi
+        exit 0
         ;;
     *)
         echo -e "$red输入命令有误，请重试！$plain"
