@@ -14,6 +14,11 @@ yellow='\033[0;33m'
 plain='\033[0m'
 
 cur_dir=$(pwd)
+RMTEMP() {
+    rm -rf /etc/systemd/system/multi-user.target.wants/FullTclash.service /etc/systemd/system/FullTclash.service
+    rm -rf /usr/local/FullTclash
+    rm -rf /usr/bin/FTC
+}
 
 # check root
 [[ $EUID -ne 0 ]] && echo -e "请使用root用户运行此脚本" && exit 1
@@ -173,9 +178,14 @@ Start() {
     systemctl daemon-reload
     systemctl start FullTclash.service
     echo -e "$green成功启动FullTclash！$plain"
+
+    wget -O /usr/bin/FTC "https://raw.githubusercontents.com/GenshinMinecraft/FullTclash-Shell-Script/main/FTC.sh"
+    chmod +x /usr/bin/FTC
+    echo -e "$green快捷脚本已安装完毕，输入 $yellowFTC$green 即可快捷管理FullTclash！$plain"
     
 }
 
+RMTEMP
 ENV_Install
 GIT_Install
 Install
