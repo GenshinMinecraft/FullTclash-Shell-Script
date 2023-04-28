@@ -10,3 +10,6 @@ FTC
 ```
 
 如发现bug，可提issue或自行修改后pr。本项目仅提供Debian系列系统使用。
+
+TODOLIST:
+TERMUX特制脚本！
