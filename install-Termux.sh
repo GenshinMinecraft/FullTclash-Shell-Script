@@ -1,6 +1,6 @@
 #/bin/bash
 
-cur_dir=${$HOME}
+cur_dir=$HOME
 
 # 本脚本用于在Termux安装FullTclash
 # 十分感谢开源工作者付出
@@ -16,7 +16,7 @@ yellow='\033[0;33m'
 plain='\033[0m'
 
 
-echo -e "$green如果在安装过程中遇到问题，请在FullTclash官方TG频道反馈！#plain"
+echo -e "$green如果在安装过程中遇到问题，请在FullTclash官方TG频道反馈！$plain"
 
 WARNING() {
 	echo -e "$red本脚本仅适用与TERMUX ARM64安装FullTclash，请勿使用其他系统安装，如不想安装，请在5sec内按下Ctrl+C！$plain"
