@@ -103,6 +103,19 @@ ENV_Install() {
     echo -e "${yellow}环境已安装完成，如有报错请截图寻求帮助${plain}"
 }
 
+CHECK_PYTHON_VERSION(){
+    PY_VERSION=`python3 -V 2>&1|awk '{print $2}'|awk -F '.' '{print $1}'`
+    PY_VERSION_2=`python3 -V 2>&1|awk '{print $2}'|awk -F '.' '{print $2}'`
+
+    if [  $PY_VERSION == 3 ] && [ $PY_VERSION_2 -ge 9 ]
+    then
+        echo -e "$green你的Python版本是： $PY_VERSION.$PY_VERSION_2，符合安装标准！$plain"
+    else
+        echo -e "$redPython版本错误！请检查是否已安装Python3.9+！$plain"
+        exit 1
+    fi
+}
+
 GIT_Install() {
     cd /usr/local
     rm -rf FullTclash
@@ -187,6 +200,7 @@ Start() {
 
 RMTEMP
 ENV_Install
+CHECK_PYTHON_VERSION
 GIT_Install
 Install
 Edit_Systemd
