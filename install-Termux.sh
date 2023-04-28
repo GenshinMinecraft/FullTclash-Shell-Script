@@ -177,9 +177,6 @@ SCREEN_SETUP() {
 	echo -e "$green成功并启动FullTclash！$plain"
 }
 
-INSTALL_BIN() {
-
-}
 
 WARNING
 INSTALL_ENV
@@ -187,5 +184,5 @@ GIT_Install
 Install
 GOBUILD
 SCREEN_SETUP
-INSTALL_BIN
+
 
