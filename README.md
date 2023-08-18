@@ -1,5 +1,13 @@
 # FullTclash-Shell-Script
 
-## 本项目将在近期内重构，可选择Docker/Systmed/Screen等方式进行安装。可选分支：backend/dev。
+***注：目前仅支持Systemd安装，Docker/Screen会在近期内添加上***
 
-https://Github.com/AirportR/FullTclash
+## 开始使用
+```bash
+wget 'https://raw.githubusercontents.com/GenshinMinecraft/FullTclash-Shell-Script/main/install.sh'; bash install.sh
+```
+
+## 管理
+```bash
+FTC
+```

@@ -129,11 +129,13 @@ Edit_Systemd() {
 }
 
 Start() {
+    chmod +x /usr/local/FullTclash/bin/*
+
     systemctl daemon-reload
     systemctl start FullTclash.service
     echo -e "$green成功启动FullTclash！$plain"
 
-    wget -O /usr/bin/FTC "https://raw.githubusercontents.com/GenshinMinecraft/FullTclash-Shell-Script/main/FTC.sh"
+    wget -O /usr/bin/FTC "https://raw.githubusercontents.com/GenshinMinecraft/FullTclash-Shell-Script/main/FTC-systemd.sh"
     chmod +x /usr/bin/FTC
     echo -e "$green快捷脚本已安装完毕，输入$yellow FTC $green即可快捷管理FullTclash！$plain"
     
